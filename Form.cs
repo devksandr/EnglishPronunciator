@@ -9,12 +9,14 @@ namespace EnglishPronunciator
         private readonly SettingsPanel _settingsPanel;
 
         private readonly SettingsService _settingsService;
+        private readonly TrayService _trayService;
 
         public FormMain()
         {
             InitializeComponent();
 
             _settingsService = new SettingsService();
+            _trayService = new TrayService(exitToolStripMenuItemTray, notifyIconTray, this);
 
             _mainPanel = new MainPanel(_settingsService, buttonPronounce, textBoxWord);
             _settingsPanel = new SettingsPanel(_settingsService);

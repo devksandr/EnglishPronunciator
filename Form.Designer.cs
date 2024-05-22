@@ -28,15 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             buttonPronounce = new Button();
             textBoxWord = new TextBox();
             tabControl = new TabControl();
             tabPageMain = new TabPage();
             tabPageSettings = new TabPage();
             panelTabControlWrapper = new Panel();
+            contextMenuStripTray = new ContextMenuStrip(components);
+            exitToolStripMenuItemTray = new ToolStripMenuItem();
+            notifyIconTray = new NotifyIcon(components);
             tabControl.SuspendLayout();
             tabPageMain.SuspendLayout();
             panelTabControlWrapper.SuspendLayout();
+            contextMenuStripTray.SuspendLayout();
             SuspendLayout();
             // 
             // buttonPronounce
@@ -99,6 +105,26 @@
             panelTabControlWrapper.Size = new Size(482, 308);
             panelTabControlWrapper.TabIndex = 3;
             // 
+            // contextMenuStripTray
+            // 
+            contextMenuStripTray.ImageScalingSize = new Size(20, 20);
+            contextMenuStripTray.Items.AddRange(new ToolStripItem[] { exitToolStripMenuItemTray });
+            contextMenuStripTray.Name = "contextMenuStripTray";
+            contextMenuStripTray.Size = new Size(103, 28);
+            // 
+            // exitToolStripMenuItemTray
+            // 
+            exitToolStripMenuItemTray.Name = "exitToolStripMenuItemTray";
+            exitToolStripMenuItemTray.Size = new Size(102, 24);
+            exitToolStripMenuItemTray.Text = "Exit";
+            // 
+            // notifyIconTray
+            // 
+            notifyIconTray.ContextMenuStrip = contextMenuStripTray;
+            notifyIconTray.Icon = (Icon)resources.GetObject("notifyIconTray.Icon");
+            notifyIconTray.Text = "English Pronunciator";
+            notifyIconTray.Visible = true;
+            // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -107,6 +133,7 @@
             ClientSize = new Size(482, 308);
             Controls.Add(panelTabControlWrapper);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FormMain";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "English Pronunciator";
@@ -114,6 +141,7 @@
             tabPageMain.ResumeLayout(false);
             tabPageMain.PerformLayout();
             panelTabControlWrapper.ResumeLayout(false);
+            contextMenuStripTray.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -125,5 +153,8 @@
         private TabPage tabPageMain;
         private TabPage tabPageSettings;
         private Panel panelTabControlWrapper;
+        private ContextMenuStrip contextMenuStripTray;
+        private ToolStripMenuItem exitToolStripMenuItemTray;
+        private NotifyIcon notifyIconTray;
     }
 }
