@@ -14,12 +14,12 @@
             _mainForm.FormClosing += FormMain_FormClosing;
         }
 
-        private void exitToolStripMenuItemTray_Click(object sender, EventArgs e)
+        private void exitToolStripMenuItemTray_Click(object? sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void notifyIconTray_MouseClick(object sender, MouseEventArgs e)
+        private void notifyIconTray_MouseClick(object? sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -27,7 +27,7 @@
             }
         }
 
-        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        private void FormMain_FormClosing(object? sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
             {

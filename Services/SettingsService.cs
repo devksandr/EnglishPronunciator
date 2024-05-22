@@ -13,5 +13,6 @@ namespace EnglishPronunciator.Services
         public string AudioExtension => "mp3";
         public string AudioDirectory => "Audio";
         public string WordDirectory => Path.Combine(AudioDirectory, "Words");
+        public string ExecuteCombination => "Control+Q";
     }
 }
