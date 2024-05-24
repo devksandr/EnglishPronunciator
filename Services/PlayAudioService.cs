@@ -1,26 +1,25 @@
-﻿namespace EnglishPronunciator.Services
+﻿using EnglishPronunciator.Helpers;
+
+namespace EnglishPronunciator.Services
 {
     public class PlayAudioService
     {
-        private readonly SettingsService _settingsService;
         private readonly WMPLib.WindowsMediaPlayer _player;
 
-        public PlayAudioService(SettingsService settingsService)
+        public PlayAudioService()
         {
-            _settingsService = settingsService;
             _player = new WMPLib.WindowsMediaPlayer();
         }
 
         public void PlayError()
         {
-            string errorPath = $"{_settingsService.AudioDirectory}/{_settingsService.AudioErrorName}.{_settingsService.AudioExtension}";
-            PlayBase(errorPath);
+            PlayBase(FilesStructureHelper.AudioErrorPath);
         }
 
         public void Play(string fileName)
         {
             // TODO combineWithExtension
-            string filePath = $"{_settingsService.WordDirectory}/{fileName}.{_settingsService.AudioExtension}";
+            string filePath = $"{FilesStructureHelper.WordDirectory}/{fileName}.{FilesStructureHelper.AudioExtension}";
             PlayBase(filePath);
         }
 

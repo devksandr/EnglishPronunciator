@@ -4,20 +4,34 @@ namespace EnglishPronunciator.Services
 {
     public class CatchSelectedTextService
     {
-        private IKeyboardMouseEvents _globalMouseHook;
+        private const int COPY_DELAY_MILLISECONDS = 50;
+        private const string COPY_COMMAND = "^c";
 
-        private readonly SettingsService _settingsService;
+        private IKeyboardMouseEvents? _globalMouseHook;
+
+        private readonly ExecuteCombinationService _executeCombinationService;
 
         public event EventHandler<string>? HotKeyPressed;
 
-        public CatchSelectedTextService(SettingsService settingsService)
+        public CatchSelectedTextService(ExecuteCombinationService executeCombinationService)
         {
-            _settingsService = settingsService;
+            _executeCombinationService = executeCombinationService;
+            
+            UpdateHotKey(_executeCombinationService.Combination);
+            _executeCombinationService.HotkeyChanged += executeCombinationService_HotkeyChanged;
+        }
 
+        private void executeCombinationService_HotkeyChanged(object? sender, string e)
+        {
+            UpdateHotKey(e);
+        }
+
+        public void UpdateHotKey(string hotKey)
+        {
             _globalMouseHook = Hook.GlobalEvents();
-            Hook.GlobalEvents().OnCombination(new Dictionary<Combination, Action>
+            _globalMouseHook.OnCombination(new Dictionary<Combination, Action>
             {
-                {Combination.FromString(_settingsService.ExecuteCombination), GetSelectedText},
+                {Combination.FromString(hotKey), GetSelectedText},
             });
         }
 
@@ -26,9 +40,9 @@ namespace EnglishPronunciator.Services
             var tmpClipboard = Clipboard.GetDataObject();
             Clipboard.Clear();
 
-            await Task.Delay(50);
-            SendKeys.SendWait("^c");
-            await Task.Delay(50);
+            await Task.Delay(COPY_DELAY_MILLISECONDS);
+            SendKeys.SendWait(COPY_COMMAND);
+            await Task.Delay(COPY_DELAY_MILLISECONDS);
 
             string text = Clipboard.GetText();
 

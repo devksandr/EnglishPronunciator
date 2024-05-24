@@ -1,25 +1,26 @@
-﻿using EnglishPronunciator.Services;
+﻿using EnglishPronunciator.Helpers;
+using EnglishPronunciator.Services;
+using EnglishPronunciator.Services.Settings;
 
 namespace EnglishPronunciator.Panels
 {
     public class MainPanel
     {
         private readonly InputWordService _inputWordService;
-        private readonly DownloadAudioService _downloadAudioService;
         private readonly PlayAudioService _playAudioService;
-        private readonly CheckFileExistsService _checkFileExistsService;
-        private readonly SettingsService _settingsService;
         private readonly CatchSelectedTextService _catchSelectedTextService;
+        private readonly AudioFileService _audioFileService;
+        private readonly SettingsParamsService _settingsParamsService;
+        private readonly ExecuteCombinationService _executeCombinationService;
 
-        public MainPanel(SettingsService settingsService, Button buttonPronounce, TextBox textBoxWord)
+        public MainPanel(SettingsParamsService settingsParamsService, ExecuteCombinationService executeCombinationService, Button buttonPronounce, TextBox textBoxWord)
         {
-            _settingsService = settingsService;
-
+            _settingsParamsService = settingsParamsService;
+            _executeCombinationService = executeCombinationService;
             _inputWordService = new InputWordService(textBoxWord);
-            _downloadAudioService = new DownloadAudioService(_settingsService);
-            _playAudioService = new PlayAudioService(_settingsService);
-            _checkFileExistsService = new CheckFileExistsService(_settingsService);
-            _catchSelectedTextService = new CatchSelectedTextService(_settingsService);
+            _playAudioService = new PlayAudioService();
+            _catchSelectedTextService = new CatchSelectedTextService(_executeCombinationService);
+            _audioFileService = new AudioFileService();
 
             buttonPronounce.Click += buttonPronounce_Click;
             _catchSelectedTextService.HotKeyPressed += CatchSelectedTextService_HotKeyPressed;
@@ -39,25 +40,15 @@ namespace EnglishPronunciator.Panels
 
         private async Task HandleWordToPronounce(string word)
         {
-            if (string.IsNullOrEmpty(word))
+            var preparedWord = AudioNameHelper.Prepare(word);
+            if (!string.IsNullOrEmpty(preparedWord))
             {
-                _playAudioService.PlayError();
-                return;
-            }
-
-            word = word.Trim().ToLower();
-
-            if (_checkFileExistsService.Exists(word))
-            {
-                _playAudioService.Play(word);
-                return;
-            }
-
-            bool audioDownloaded = await _downloadAudioService.DownloadFileAsync(word);
-            if (audioDownloaded)
-            {
-                _playAudioService.Play(word);
-                return;
+                bool audioDownloaded = await _audioFileService.DownloadFileAsync(preparedWord);
+                if (audioDownloaded)
+                {
+                    _playAudioService.Play(preparedWord);
+                    return;
+                }
             }
 
             _playAudioService.PlayError();

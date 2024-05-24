@@ -1,22 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EnglishPronunciator.Helpers;
+using EnglishPronunciator.Services.Settings;
 
 namespace EnglishPronunciator.Services
 {
     public class DownloadAudioService
     {
-        private readonly SettingsService _settingsService;
-
-        public DownloadAudioService(SettingsService settingsService)
-        {
-            _settingsService = settingsService;
-        }
+        private const string URL = "https://d1qx7pbj0dvboc.cloudfront.net";
 
         private string GetUri(string word) 
-            => $"{_settingsService.URI}/{word}.{_settingsService.AudioExtension}";
+            => $"{URL}/{word}.{FilesStructureHelper.AudioExtension}";
 
         public async Task<bool> DownloadFileAsync(string word)
         {
@@ -42,12 +34,12 @@ namespace EnglishPronunciator.Services
 
         private async Task SaveFile(byte[] bytes, string fileName)
         {
-            if (!Directory.Exists(_settingsService.WordDirectory))
+            if (!Directory.Exists(FilesStructureHelper.WordDirectory))
             {
-                Directory.CreateDirectory(_settingsService.WordDirectory);
+                Directory.CreateDirectory(FilesStructureHelper.WordDirectory);
             }
 
-            string fullFileName = $"{_settingsService.WordDirectory}/{fileName}.{_settingsService.AudioExtension}";
+            string fullFileName = $"{FilesStructureHelper.WordDirectory}/{fileName}.{FilesStructureHelper.AudioExtension}";
             await File.WriteAllBytesAsync(fullFileName, bytes);
         }
     }
