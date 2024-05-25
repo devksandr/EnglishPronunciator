@@ -18,7 +18,6 @@ namespace EnglishPronunciator.Services
 
         public void Play(string fileName)
         {
-            // TODO combineWithExtension
             string filePath = $"{FilesStructureHelper.WordDirectory}/{fileName}.{FilesStructureHelper.AudioExtension}";
             PlayBase(filePath);
         }

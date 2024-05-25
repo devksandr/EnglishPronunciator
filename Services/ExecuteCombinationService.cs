@@ -56,7 +56,6 @@ namespace EnglishPronunciator.Services
             _controls.LetterTextBox.Text = param.Letter.ToString();
         }
 
-        // TODO refactor
         private void CtrlCheckBox_CheckedChanged(object? sender, EventArgs e)
         {
             _settingsParamsService.Params.CtrlEnabled = _controls.CtrlCheckBox.Checked;

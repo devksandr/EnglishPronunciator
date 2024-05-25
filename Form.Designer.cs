@@ -79,29 +79,29 @@
             tabControl.Location = new Point(-4, 2);
             tabControl.Name = "tabControl";
             tabControl.SelectedIndex = 0;
-            tabControl.Size = new Size(498, 185);
+            tabControl.Size = new Size(498, 156);
             tabControl.TabIndex = 2;
             // 
             // tabPageMain
             // 
-            tabPageMain.BackColor = Color.Gray;
+            tabPageMain.BackColor = Color.Transparent;
             tabPageMain.Controls.Add(textBoxWord);
             tabPageMain.Controls.Add(buttonPronounce);
             tabPageMain.Location = new Point(4, 29);
             tabPageMain.Name = "tabPageMain";
             tabPageMain.Padding = new Padding(3);
-            tabPageMain.Size = new Size(490, 152);
+            tabPageMain.Size = new Size(490, 123);
             tabPageMain.TabIndex = 0;
             tabPageMain.Text = "Main";
             // 
             // tabPageSettings
             // 
-            tabPageSettings.BackColor = Color.Gray;
+            tabPageSettings.BackColor = Color.Transparent;
             tabPageSettings.Controls.Add(panelExecuteCombination);
             tabPageSettings.Location = new Point(4, 29);
             tabPageSettings.Name = "tabPageSettings";
             tabPageSettings.Padding = new Padding(3);
-            tabPageSettings.Size = new Size(490, 152);
+            tabPageSettings.Size = new Size(490, 123);
             tabPageSettings.TabIndex = 1;
             tabPageSettings.Text = "Settings";
             // 
@@ -114,15 +114,15 @@
             panelExecuteCombination.Controls.Add(checkBoxAlt);
             panelExecuteCombination.Controls.Add(label1);
             panelExecuteCombination.Controls.Add(textBoxLetter);
-            panelExecuteCombination.Location = new Point(32, 19);
+            panelExecuteCombination.Location = new Point(12, 9);
             panelExecuteCombination.Name = "panelExecuteCombination";
-            panelExecuteCombination.Size = new Size(411, 94);
+            panelExecuteCombination.Size = new Size(458, 76);
             panelExecuteCombination.TabIndex = 7;
             // 
             // checkBoxCtrl
             // 
             checkBoxCtrl.AutoSize = true;
-            checkBoxCtrl.Location = new Point(26, 50);
+            checkBoxCtrl.Location = new Point(81, 39);
             checkBoxCtrl.Name = "checkBoxCtrl";
             checkBoxCtrl.Size = new Size(54, 24);
             checkBoxCtrl.TabIndex = 0;
@@ -132,16 +132,16 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(131, 11);
+            label2.Location = new Point(167, 8);
             label2.Name = "label2";
-            label2.Size = new Size(148, 20);
+            label2.Size = new Size(127, 20);
             label2.TabIndex = 5;
-            label2.Text = "Execute combination";
+            label2.Text = "Pronounce hotkey";
             // 
             // checkBoxShift
             // 
             checkBoxShift.AutoSize = true;
-            checkBoxShift.Location = new Point(86, 50);
+            checkBoxShift.Location = new Point(139, 39);
             checkBoxShift.Name = "checkBoxShift";
             checkBoxShift.Size = new Size(61, 24);
             checkBoxShift.TabIndex = 1;
@@ -151,7 +151,7 @@
             // checkBoxAlt
             // 
             checkBoxAlt.AutoSize = true;
-            checkBoxAlt.Location = new Point(153, 50);
+            checkBoxAlt.Location = new Point(206, 39);
             checkBoxAlt.Name = "checkBoxAlt";
             checkBoxAlt.Size = new Size(50, 24);
             checkBoxAlt.TabIndex = 2;
@@ -161,7 +161,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(221, 50);
+            label1.Location = new Point(274, 39);
             label1.Name = "label1";
             label1.Size = new Size(50, 20);
             label1.TabIndex = 4;
@@ -169,7 +169,7 @@
             // 
             // textBoxLetter
             // 
-            textBoxLetter.Location = new Point(277, 50);
+            textBoxLetter.Location = new Point(330, 36);
             textBoxLetter.MaxLength = 1;
             textBoxLetter.Name = "textBoxLetter";
             textBoxLetter.ReadOnly = true;
@@ -178,12 +178,12 @@
             // 
             // panelTabControlWrapper
             // 
-            panelTabControlWrapper.BackColor = SystemColors.ActiveBorder;
+            panelTabControlWrapper.BackColor = SystemColors.Control;
             panelTabControlWrapper.Controls.Add(tabControl);
             panelTabControlWrapper.Dock = DockStyle.Fill;
             panelTabControlWrapper.Location = new Point(0, 0);
             panelTabControlWrapper.Name = "panelTabControlWrapper";
-            panelTabControlWrapper.Size = new Size(482, 178);
+            panelTabControlWrapper.Size = new Size(482, 119);
             panelTabControlWrapper.TabIndex = 3;
             // 
             // contextMenuStripTray
@@ -211,7 +211,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.AppWorkspace;
-            ClientSize = new Size(482, 178);
+            ClientSize = new Size(482, 119);
             Controls.Add(panelTabControlWrapper);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Icon = (Icon)resources.GetObject("$this.Icon");

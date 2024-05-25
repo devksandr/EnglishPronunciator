@@ -19,7 +19,5 @@ namespace EnglishPronunciator.Services.Settings
         {
             _settingsFileService.Save();
         }
-
-        //public string ExecuteCombination => _executeCombinationService.Combination;
     }
 }

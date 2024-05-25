@@ -1,5 +1,4 @@
 ﻿using EnglishPronunciator.Helpers;
-using EnglishPronunciator.Services.Settings;
 
 namespace EnglishPronunciator.Services
 {
