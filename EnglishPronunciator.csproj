@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\error.mp3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <COMReference Include="WMPLib">
       <WrapperTool>tlbimp</WrapperTool>
       <VersionMinor>0</VersionMinor>
@@ -19,6 +23,16 @@
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\error.mp3">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+    <ItemGroup>
+	    <None Include="$(SolutionDir)Resources\error.mp3" CopyToOutputDirectory="PreserveNewest" Link="Audio\error.mp3" />
+    </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MouseKeyHook" Version="5.7.1" />
